@@ -61,9 +61,11 @@ public class MainActivity extends AppCompatActivity {
 
         Random r = new Random();
 
-        int number = r.nextInt(6);
+        int number = r.nextInt(25);
 
         tv.setText(Integer.toString(number));
+
+        eleven kmmk
 
 
     }
