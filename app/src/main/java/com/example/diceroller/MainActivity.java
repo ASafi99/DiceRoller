@@ -11,6 +11,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import java.util.Random;
 
@@ -20,18 +22,70 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final TextView textOne = (TextView) findViewById(R.id.numberTextView);
+        final TextView guessText = (TextView)findViewById(R.id.textView2);
+        final EditText userGuess = (EditText) findViewById(R.id.editText);
+        final TextView score = (TextView)findViewById(R.id.score);
+        Button pushMe = (Button) findViewById(R.id.button);
+
+
+
+
+
+
+
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-    }
+            pushMe.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    int counter=0;
+
+                    score.setText(String.valueOf(counter));
+
+
+                    String randText = "";
+
+                    Random r = new Random();
+
+                    int number = r.nextInt(6) + 1;
+
+                    randText = Integer.toString(number);
+
+                    textOne.setText(randText);
+
+                    int userNumber = Integer.parseInt(userGuess.getText().toString());
+
+                    if(userNumber<1 || userNumber>6) {
+
+                        guessText.setText("Please guess 1-6!");
+
+                    } else if(userNumber==number){
+
+                        counter++;
+
+                        guessText.setText("Congratulations!");
+
+
+
+
+                    }else {
+                        guessText.setText("Try Again!");
+                    }
+
+
+
+
+                }
+    });
+
+
+        }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -55,17 +109,18 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void on_button_click(View view){
 
-        TextView tv = this.findViewById(R.id.numberTextView);
-
-        Random r = new Random();
-
-        int number = r.nextInt(6);
-
-        tv.setText(Integer.toString(number));
 
 
 
     }
-}
+
+
+
+
+
+
+
+
+
+
