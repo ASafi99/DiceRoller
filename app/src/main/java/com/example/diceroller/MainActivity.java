@@ -18,6 +18,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    int counter= 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,16 +27,10 @@ public class MainActivity extends AppCompatActivity {
         final TextView textOne = (TextView) findViewById(R.id.numberTextView);
         final TextView guessText = (TextView)findViewById(R.id.textView2);
         final EditText userGuess = (EditText) findViewById(R.id.editText);
-        final TextView score = (TextView)findViewById(R.id.score);
         Button pushMe = (Button) findViewById(R.id.button);
+        final TextView score = (TextView)findViewById(R.id.score);
 
-
-
-
-
-
-
-
+        score.setText("Points: 0 ");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -43,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    int counter=0;
-
-                    score.setText(String.valueOf(counter));
 
 
                     String randText = "";
@@ -60,27 +53,24 @@ public class MainActivity extends AppCompatActivity {
 
                     int userNumber = Integer.parseInt(userGuess.getText().toString());
 
-                    if(userNumber<1 || userNumber>6) {
+                        if (userNumber < 1 || userNumber > 6) {
 
-                        guessText.setText("Please guess 1-6!");
+                            guessText.setText("Please guess 1-6!");
 
-                    } else if(userNumber==number){
+                        } else if (userNumber == number) {
 
-                        counter++;
+                            counter++;
 
-                        guessText.setText("Congratulations!");
+                            score.setText("Points: "+counter);
+
+                            guessText.setText("Congratulations!");
 
 
-
-
-                    }else {
-                        guessText.setText("Try Again!");
+                        } else {
+                            guessText.setText("Try Again!");
+                        }
                     }
 
-
-
-
-                }
     });
 
 
